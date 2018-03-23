@@ -1,0 +1,98 @@
+<html>
+<head>
+	<title>Ass Ang</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/css/bootstrap-datepicker.css">
+</head>
+<body>
+	<div ng-app="customerservice" ng-controller="customercontroller" class="container">
+		<div class="col-xs-4">
+			<form>
+			  <div class="form-group">
+			    <label for="name">Name</label>
+			    <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="details.name">
+			  </div>
+			  <div class="form-group">
+			    <label for="Loc">Location</label>
+			    <input type="text" class="form-control" id="Loc" placeholder="Location" ng-model="details.loc">
+			  </div>
+			  <div class="form-group">
+			  	<label for="Pdt">Product</label>
+			  	<select class="form-control"  id="Pdt" ng-options="opt for opt in options" ng-model="details.pdt" ></select>
+			</div>
+			<div class="form-group">
+				<label for="date">Date</label>
+				<input id="date" class="form-control datepicker" data-date-format="mm/dd/yyyy" ng-model="details.date">
+			</div>
+			  <button type="button" class="btn btn-default" ng-click="submit(details)">Submit</button>
+<!-- 			  <button type="button" class="btn btn-default">Update</button> -->
+			  <button type="reset" class="btn btn-default">Reset</button>
+			</form>
+		</div>
+		<div class="col-xs-8">
+			<table class="table table-striped">
+			  <tr>
+			  	<td>Sr No</td>
+			    <td>Name</td>
+			    <td>Location</td>
+			    <td>Product</td>
+			    <td>Date</td>
+			    <td>Edit</td>
+			    <td>Delete</td>
+			  </tr>
+			  <tr ng-repeat="product in products">
+			  	<td>{{$index+1}}</td>
+			    <td>{{product.name}}</td>
+			    <td>{{product.loc}}</td>
+			    <td>{{product.pdt}}</td>
+			    <td>{{product.date |dateFilter}}</td>
+			    <td><span class="glyphicon glyphicon-edit edit" data-toggle="modal" data-target="#myModal" ng-click = "edit($index)"></span></td>
+			    <td><span class="glyphicon glyphicon-remove remove" ng-click = "remove($index)"></span></td>
+			  </tr>
+			</table>
+		</div>
+		<!-- Modal -->
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+		        <h4 class="modal-title" id="myModalLabel">Edit Info</h4>
+		      </div>
+		      <div class="modal-body">
+		        <form>
+				  <div class="form-group">
+				    <label for="name">Name</label>
+				    <input type="text" class="form-control" id="name" placeholder="Enter name" ng-model="update.name">
+				  </div>
+				  <div class="form-group">
+				    <label for="Loc">Location</label>
+				    <input type="text" class="form-control" id="Loc" placeholder="Location" ng-model="update.loc">
+				  </div>
+				  <div class="form-group">
+				  	<label for="Pdt">Product</label>
+				  	<select class="form-control"  id="Pdt" ng-options="opt for opt in options" ng-model="update.pdt" ></select>
+				</div>
+				<div class="form-group">
+					<label for="date">Date</label>
+					<input id="date" class="form-control datepicker" data-date-format="mm/dd/yyyy" ng-model="update.date">
+				</div>
+			</form>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+		        <button type="button" class="btn btn-primary" ng-click="upd(update)">Save changes</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+
+	</div>	
+	<script type="text/javascript" src="js/jquery-1.11.0.min.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.0/js/bootstrap-datepicker.min.js"></script>
+	<script type="text/javascript" src="js/angular.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
